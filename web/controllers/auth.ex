@@ -12,6 +12,12 @@ defmodule Rumbl.Auth do
     assign(conn, :current_user, user)
   end
 
+  def logout(conn) do
+    configure_session(conn, drop: true)
+    # If you want to keep the session around, you could also delete only the -
+    # user ID information by calling delete_session(conn, :user_id).
+  end
+
   def login(conn, user) do
     conn
     |> assign(:current_user, user)
