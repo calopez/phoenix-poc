@@ -5,6 +5,7 @@
     <tr>
       <th>User</th>
       <th>Url</th>
+      <th>Category</th>
       <th>Title</th>
       <th>Description</th>
 
@@ -16,6 +17,7 @@
     <tr>
       <td><%= video.user_id %></td>
       <td><%= video.url %></td>
+      <td><%= video.category_id%></td>
       <td><%= video.title %></td>
       <td><%= video.description %></td>
 
