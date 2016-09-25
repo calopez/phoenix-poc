@@ -22,7 +22,6 @@ defmodule Rumbl.VideoViewTest do
     changeset = Rumbl.Video.changeset(%Rumbl.Video{}) # url/title/description can't be blank, but this is not important for this test.
     categories = [{"cats", 123}]
 
-    IO.inspect changeset
     content = render_to_string(
       Rumbl.VideoView, "new.html",
       conn: conn,
