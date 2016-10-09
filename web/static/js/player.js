@@ -23,7 +23,7 @@ let Player = {
         });
     },
     onPlayerStateChange(event){},
-    getCurrentTime() { return Match.floor(this.player.getCurrentTime() * 1000 ); },
+    getCurrentTime() { return Math.floor(this.player.getCurrentTime() * 1000 ); },
     seekTo(millsec){ return this.player.seekTo(millsec/100); }
 };
 export default Player;
