@@ -26,6 +26,7 @@ let Video = {
         });
 
         vidChannel.on("new_annotation", (resp) => {
+            vidChannel.params.last_seen_id = resp.id;
             this.renderAnnotation(msgContainer, resp);
         });
 
@@ -37,9 +38,14 @@ let Video = {
             Player.seekTo(seconds);
         });
 
-
         vidChannel.join()
             .receive("ok", ({annotations})=> {
+                let ids = annotations.map(ann => ann.id);
+                if(ids.length > 0) {
+                    // A channel on the client holds a params object and -
+                    // sends it to the server every time we call channel.join().
+                    vidChannel.params.last_seen_id = Math.max(...ids);
+                }
                 this.scheduleMessages(msgContainer, annotations);
             })
             .receive("error", reason => console.log("join failed", reason));
