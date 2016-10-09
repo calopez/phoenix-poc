@@ -6,11 +6,18 @@ defmodule Rumbl.VideoChannel do
     {:ok, socket}
   end
 
-  def handle_info(:ping, socket) do
-    count = socket.assigns[:count] || 1
-    push socket, "ping", %{count: count}
-
-    {:noreply, assign(socket, :count, count + 1)}
+  @doc"""
+  This function will handle all incoming messages to a channel, pushed directly from the remote client
+  """
+  def handle_in("new_annotation", params, socket) do
+    # we are not persisting to the DB yet.
+    # simply broadcast! new_annotation to all the clients on this topic
+    broadcast! socket, "new_annotation", %{
+      user: %{username: "anonymous"},
+      body: params["body"],
+      at: params["at"]
+    }
+    {:reply, :ok, socket}
   end
 
 

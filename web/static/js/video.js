@@ -19,7 +19,7 @@ let Video = {
         let vidChannel = socket.channel(`videos:${videoId}`);
 
         // vidChannel.on("ping", ({count}) => console.log("PING ", count));
-        postButton.addEventListiner("click", e => {
+        postButton.addEventListener("click", e => {
             let payload = {body: msgInput.value, at: Player.getCurrentTime()};
             vidChannel.push("new_annotation", payload).receive("error", e => console.log(e));
             msgInput.value = "";
@@ -36,7 +36,7 @@ let Video = {
     },
     esc(srt){ // safely escape user input before injecting values. XSS protection.
         let div = document.createElement('div');
-        div.appendChild(document.ccreateTextNode(srt));
+        div.appendChild(document.createTextNode(srt));
         return div.innerHTML;
     },
     renderAnnotation(msgContainer, {user, body, at}) {
@@ -47,7 +47,7 @@ let Video = {
           <b>${this.esc(user.username)}</b>: ${this.esc(body)}
           </a>
         `;
-        msgContainer.apendChild(template);
+        msgContainer.appendChild(template);
         msgContainer.scrollTop = msgContainer.scrollHeight;
     }
 };
