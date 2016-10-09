@@ -1,4 +1,4 @@
-defmodule Rumbl.Annnotation do
+defmodule Rumbl.Annotation do
   use Rumbl.Web, :model
 
   schema "annotations" do

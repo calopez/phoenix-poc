@@ -1,4 +1,4 @@
-defmodule Rumbl.Repo.Migrations.CreateAnnnotation do
+defmodule Rumbl.Repo.Migrations.CreateAnnotation do
   use Ecto.Migration
 
   def change do
